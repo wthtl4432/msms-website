@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <path id="arcTop" d="M 34 100 A 66 66 0 0 1 166 100" fill="none"/>
+    <path id="arcBot" d="M 26 100 A 74 74 0 0 0 174 100" fill="none"/>
+    <circle cx="100" cy="100" r="98" fill="#0B6B2E"/>
+    <circle cx="100" cy="100" r="92" fill="#FFFFFF"/>
+    <circle cx="100" cy="100" r="89" fill="#2E63F0"/>
+    <circle cx="100" cy="100" r="51" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+    <text font-family="Michroma, Arial, sans-serif" font-size="15.5" fill="#FFC21A" stroke="#FFC21A" stroke-width=".5" letter-spacing=".5"><textPath href="#arcTop" startOffset="50%" text-anchor="middle">MAKE SAFETY</textPath></text>
+    <text font-family="Michroma, Arial, sans-serif" font-size="15.5" fill="#FFC21A" stroke="#FFC21A" stroke-width=".5" letter-spacing=".5"><textPath href="#arcBot" startOffset="50%" text-anchor="middle">MAKE SENSE</textPath></text>
+    <text x="96" y="114" font-family="Michroma, Arial, sans-serif" font-size="38" fill="#FFFFFF" text-anchor="middle">MS</text>
+    <text x="134" y="84" font-family="Michroma, Arial, sans-serif" font-size="14" fill="#FFFFFF" text-anchor="middle">2</text>
+  </svg>

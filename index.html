@@ -1,0 +1,992 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<title>Make Safety Make Sense</title>
+<meta name="description" content="National construction safety consulting and OSHA training for manufacturers and contractors.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@500&family=Michroma&display=swap">
+<style>
+:root{
+  --blue:#1F5AD6; --blue-deep:#123A8F; --green:#0B6B2E; --hivis:#FFC21A;
+  --ink:#14203A; --ink-soft:#4A5770; --paper:#F4F6FA; --surface:#FFFFFF; --line:#D9DFEA;
+  --band:#E8EEF8; --on-dark:#FFFFFF; --dark:#0F1B33; --link:#1F5AD6;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Public Sans","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:"IBM Plex Mono",Consolas,"Courier New",monospace;
+  --wrap:1160px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){color-scheme:dark;
+    --ink:#E9EEF7; --ink-soft:#A9B4C9; --paper:#0C1426; --surface:#131F38; --line:#26355A; --band:#16243F; --dark:#08101F; --link:#8FB2FF; --blue:#3C74F0;}
+}
+:root[data-theme="dark"]{color-scheme:dark;
+  --ink:#E9EEF7; --ink-soft:#A9B4C9; --paper:#0C1426; --surface:#131F38; --line:#26355A; --band:#16243F; --dark:#08101F; --link:#8FB2FF; --blue:#3C74F0;}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+a{color:var(--link)}
+h1,h2,h3{font-family:var(--display);line-height:1.05;margin:0;text-wrap:balance;letter-spacing:.005em}
+h1{font-size:clamp(2.6rem,6.4vw,4.6rem);font-weight:800;text-transform:uppercase}
+h2{font-size:clamp(2rem,4vw,2.9rem);font-weight:800;text-transform:uppercase}
+h3{font-size:1.6rem;font-weight:700}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:20px}
+.eyebrow{font:600 .8rem/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--green)}
+.cfr{font:500 .78rem/1.3 var(--mono);color:var(--ink-soft);letter-spacing:.02em}
+.stack{display:flex;flex-direction:column;gap:14px}
+.prose{max-width:64ch}
+.muted{color:var(--ink-soft)}
+:focus-visible{outline:3px solid var(--hivis);outline-offset:2px}
+
+/* top contact bar + header */
+.topbar{background:var(--dark);color:#DCE4F2;font-size:.9rem}
+.topbar .wrap{display:flex;flex-wrap:wrap;gap:6px 22px;justify-content:space-between;padding-block:7px}
+.topbar a{color:#fff;text-decoration:none;font-weight:600}
+.topbar .tm{color:#AFC0DD}
+header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
+header.site::after{content:"";display:block;height:5px;background:repeating-linear-gradient(-45deg,var(--hivis) 0 14px,#16233D 14px 28px)}
+.hdr{display:flex;align-items:center;gap:16px;padding-block:10px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);margin-right:auto}
+.brand svg{width:58px;height:58px;flex:none}
+.brand b{font:800 1.45rem/1 var(--display);text-transform:uppercase;letter-spacing:.02em;display:block}
+.brand small{font:600 .72rem/1.2 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+nav.main{display:flex;gap:4px;flex-wrap:wrap}
+nav.main a{font:700 1.08rem/1 var(--display);text-transform:uppercase;letter-spacing:.06em;color:var(--ink);text-decoration:none;padding:10px 9px;white-space:nowrap;border-bottom:3px solid transparent}
+nav.main a:hover{color:var(--blue)}
+nav.main a[aria-current="page"]{border-bottom-color:var(--hivis);color:var(--blue)}
+.menu-btn{display:none;font:700 1rem/1 var(--display);text-transform:uppercase;letter-spacing:.08em;background:var(--blue);color:#fff;border:0;padding:10px 14px;cursor:pointer}
+@media (max-width:1060px){
+  .menu-btn{display:block}
+  nav.main{display:none;position:absolute;left:0;right:0;top:100%;background:var(--surface);flex-direction:column;padding:8px 16px 16px;border-bottom:1px solid var(--line)}
+  nav.main.open{display:flex}
+  .brand small{display:none}
+}
+
+/* buttons */
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;font:700 1.1rem/1 var(--display);text-transform:uppercase;letter-spacing:.06em;text-decoration:none;padding:15px 22px;border:2px solid var(--blue);background:var(--blue);color:#fff;cursor:pointer}
+.btn:hover{background:var(--blue-deep);border-color:var(--blue-deep)}
+.btn.hv{background:var(--hivis);border-color:var(--hivis);color:#14203A}
+.btn.hv:hover{background:#FFD24D;border-color:#FFD24D}
+.btn.ghost{background:transparent;color:var(--blue)}
+.btn.ghost:hover{background:var(--blue);color:#fff}
+.btn.ghost-light{background:transparent;color:#fff;border-color:#fff}
+.btn.ghost-light:hover{background:#fff;color:#14203A}
+
+/* sections */
+section.band{padding-block:72px}
+section.alt{background:var(--band)}
+.page-head{background:var(--dark);color:#fff;padding-block:56px 48px}
+.page-head .eyebrow{color:var(--hivis)}
+.page-head p{color:#D3DCEC;font-size:1.15rem;max-width:60ch}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px;align-items:start}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+@media (max-width:820px){.grid2,.grid3{grid-template-columns:1fr}}
+
+/* hero */
+.hero{position:relative;color:#fff;background:#0F1B33 url(img/hero-crane.jpg) 70% 45%/cover no-repeat}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,20,40,.92) 0%,rgba(10,20,40,.7) 42%,rgba(10,20,40,.1) 100%)}
+.hero .wrap{position:relative;padding-block:96px 88px}
+.hero .stack{max-width:620px;gap:22px}
+.hero h1 span{color:var(--hivis)}
+.hero p{font-size:1.2rem;color:#E3E9F4}
+@media (max-width:700px){.hero::before{background:rgba(10,20,40,.8)}.hero .wrap{padding-block:64px}}
+
+.trusted{background:var(--surface);border-bottom:1px solid var(--line)}
+.trusted .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:18px 36px;padding-block:26px}
+.trusted .logo-box{background:#fff;padding:10px 14px;border:1px solid var(--line);display:flex}
+.trusted .logo-box img{height:48px;width:auto}
+.trusted strong{font:800 1.5rem/1.1 var(--display);text-transform:uppercase}
+.trusted p{max-width:60ch;color:var(--ink-soft);font-size:.98rem}
+
+.svc{background:var(--surface);border:1px solid var(--line);display:flex;flex-direction:column}
+.svc img{aspect-ratio:16/9;object-fit:cover;width:100%;max-width:100%}
+.svc .in{padding:28px;display:flex;flex-direction:column;gap:14px;flex:1}
+.svc .btns{margin-top:auto;padding-top:6px}
+
+.parasite{display:grid;grid-template-columns:220px minmax(0,1fr);gap:36px;align-items:center}
+.parasite img{width:220px;max-width:100%}
+@media (max-width:700px){.parasite{grid-template-columns:1fr}.parasite img{width:160px}}
+.caption{font-size:.8rem;color:var(--ink-soft)}
+
+.why{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:4px solid var(--ink)}
+.why > div{padding:26px 26px 6px 0;display:flex;flex-direction:column;gap:10px}
+.why > div + div{padding-left:26px;border-left:1px solid var(--line)}
+@media (max-width:820px){.why{grid-template-columns:1fr}.why > div + div{padding-left:0;border-left:0;border-top:1px solid var(--line)}}
+
+blockquote{margin:0;font:italic 400 1.35rem/1.45 var(--body);max-width:52ch}
+blockquote + cite{display:block;margin-top:10px;font:600 .9rem/1.3 var(--body);font-style:normal;color:var(--ink-soft)}
+
+.cta{background:var(--blue-deep);color:#fff}
+.cta .wrap{display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;padding-block:52px}
+.cta h2{color:#fff}
+.cta p{color:#D6E0F5;font-size:1.1rem}
+.cta a.plain{color:#fff;font-weight:700}
+
+/* consulting */
+.tagline{font:800 clamp(1.5rem,3vw,2.1rem)/1.15 var(--display);text-transform:uppercase;color:var(--hivis)}
+.offer{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border-top:1px solid var(--line)}
+.offer > div{padding:28px 28px 28px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:10px}
+.offer > div:nth-child(even){padding-left:28px;padding-right:0;border-left:1px solid var(--line)}
+@media (max-width:820px){.offer{grid-template-columns:1fr}.offer > div:nth-child(even){padding-left:0;border-left:0}}
+ul.checks{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px}
+ul.checks li{padding-left:30px;position:relative}
+ul.checks li::before{content:"";position:absolute;left:0;top:.45em;width:14px;height:14px;background:var(--hivis);box-shadow:inset 0 0 0 2px #16233D}
+.art-pair{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:24px;align-items:end;background:#fff;padding:24px;border:1px solid var(--line)}
+.art-pair figure{margin:0;display:flex;flex-direction:column;gap:8px;align-items:center}
+.art-pair figcaption{font:800 1.2rem/1 var(--display);text-transform:uppercase;color:#14203A}
+.guarantee{border:3px solid var(--green);padding:22px 24px;background:var(--surface)}
+.guarantee strong{color:var(--green)}
+
+/* training */
+.banner{aspect-ratio:1800/620;max-width:100%;width:100%;object-fit:cover;object-position:center 40%;display:block}
+.course{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:40px;padding-block:44px;border-top:1px solid var(--line)}
+.course:first-child{border-top:0;padding-top:0}
+@media (max-width:820px){.course{grid-template-columns:1fr;gap:20px}}
+.facts{background:var(--surface);border:1px solid var(--line);padding:22px;display:flex;flex-direction:column;gap:14px;align-self:start}
+.facts dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 16px}
+.facts dt{font:700 .8rem/1.6 var(--body);text-transform:uppercase;letter-spacing:.1em;color:var(--ink-soft)}
+.facts dd{margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{font-size:.88rem;padding:5px 10px;background:var(--band);border:1px solid var(--line)}
+.topics{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:0;border-top:1px solid var(--line)}
+.topics > div{padding:14px 12px 14px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:3px}
+.topics b{font-weight:600}
+.ss{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+@media (max-width:820px){.ss{grid-template-columns:1fr}}
+.ss article{background:var(--surface);border:1px solid var(--line);padding:24px;display:flex;flex-direction:column;gap:10px}
+.ss .code{font:500 .85rem/1 var(--mono);color:var(--blue)}
+.classes{display:flex;flex-direction:column;border-top:4px solid var(--ink)}
+.class-row{display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:24px;align-items:center;padding-block:24px;border-bottom:1px solid var(--line)}
+.date{font:800 1.1rem/1.1 var(--display);text-transform:uppercase;text-align:center;border:2px solid var(--ink);padding:10px 6px}
+.date big{display:block;font-size:2.2rem;line-height:1}
+.date.tbd{border-style:dashed;color:var(--ink-soft);border-color:var(--ink-soft)}
+@media (max-width:700px){.class-row{grid-template-columns:1fr;gap:12px}.date{justify-self:start;padding-inline:18px}}
+
+/* about */
+.about-top{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:48px;align-items:start}
+.about-top img{width:100%;max-width:100%;aspect-ratio:1/1;object-fit:cover}
+@media (max-width:820px){.about-top{grid-template-columns:1fr}}
+.creds{display:flex;flex-wrap:wrap;gap:10px}
+.creds span{font:700 .95rem/1 var(--display);text-transform:uppercase;letter-spacing:.06em;padding:9px 12px;background:var(--dark);color:#fff}
+.creds span b{color:var(--hivis)}
+.gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.gallery figure{margin:0;position:relative;overflow:hidden;aspect-ratio:4/3}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
+.gallery figure:hover img{transform:scale(1.04)}
+.gallery figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 10px 8px;font-size:.8rem;color:#fff;background:linear-gradient(transparent,rgba(8,15,30,.85))}
+@media (max-width:820px){.gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (prefers-reduced-motion:reduce){.gallery img{transition:none}}
+
+/* faq */
+.faq{display:flex;flex-direction:column;border-top:4px solid var(--ink);max-width:860px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:center;padding-block:20px;font:700 1.45rem/1.15 var(--display)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:800 1.8rem/1 var(--display);color:var(--blue);flex:none}
+.faq details[open] summary::after{content:"–"}
+.faq .ans{padding-bottom:22px;display:flex;gap:20px;align-items:flex-start}
+.faq .ans img{width:96px;flex:none}
+@media (max-width:560px){.faq .ans{flex-direction:column}}
+
+/* contact */
+.contact-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+@media (max-width:720px){.contact-cards{grid-template-columns:1fr}}
+.cc{background:var(--surface);border:1px solid var(--line);padding:28px;display:flex;flex-direction:column;gap:12px}
+.cc .big{font:800 clamp(1.5rem,3.4vw,2.2rem)/1.1 var(--display);word-break:break-word;user-select:all;color:var(--ink)}
+.copy{align-self:flex-start;font:600 .9rem/1 var(--body);background:transparent;border:1px solid var(--line);color:var(--ink);padding:9px 12px;cursor:pointer}
+.copy:hover{border-color:var(--blue);color:var(--blue)}
+
+footer.site{background:var(--dark);color:#C4CEE0;font-size:.92rem}
+footer.site .wrap{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr);gap:32px;padding-block:48px 24px}
+footer.site h4{margin:0 0 10px;font:700 1.05rem/1 var(--display);text-transform:uppercase;letter-spacing:.08em;color:#fff}
+footer.site a{color:#fff;text-decoration:none}
+footer.site a:hover{text-decoration:underline}
+footer.site .legal{grid-column:1/-1;border-top:1px solid #26355A;padding-top:18px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;color:#8E9BB5;font-size:.84rem}
+footer.site ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}
+@media (max-width:820px){footer.site .wrap{grid-template-columns:1fr}}
+
+/* MS2 Risk Check app page */
+.app-head{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);gap:48px;align-items:center}
+@media (max-width:820px){.app-head{grid-template-columns:1fr}}
+.phone{justify-self:center;width:100%;max-width:280px;background:#fff;color:#14203A;border:10px solid #0A1222;border-radius:30px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.35);font-size:.9rem}
+.ph-bar{background:#1D60FE;color:#fff;font:600 .72rem/1.2 var(--body);padding:12px 14px;letter-spacing:.02em}
+.ph-body{padding:16px 14px 18px;display:flex;flex-direction:column;gap:10px}
+.page-head .phone p{color:#14203A;font-size:inherit;max-width:none}
+.page-head .phone .ph-step{color:#4A5770}
+.page-head .phone .ph-life{color:#B3261E}
+.ph-step{font:600 .68rem/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:#4A5770}
+.ph-q{font-weight:700;line-height:1.3}
+.ph-yn{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ph-yn span{text-align:center;padding:9px;border:2px solid #D9DFEA;font-weight:700}
+.ph-yn span.on{background:#006400;border-color:#006400;color:#fff}
+.ph-chips{display:flex;flex-wrap:wrap;gap:6px}
+.ph-chips span{font-size:.75rem;padding:4px 8px;border:1px solid #D9DFEA}
+.ph-chips span.on{border-color:#1D60FE;background:#E8EEFF;color:#123A8F;font-weight:600}
+.ph-risk{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:#FDCB01;font-weight:600}
+.ph-risk b{font:800 1.3rem/1 var(--display);letter-spacing:.06em}
+.ph-life{font-size:.78rem;font-weight:600;color:#B3261E}
+ol.steps{list-style:none;counter-reset:st;padding:0;margin:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;border-top:4px solid var(--ink)}
+ol.steps li{counter-increment:st;padding:22px 20px 8px 0;display:flex;flex-direction:column;gap:8px}
+ol.steps li + li{padding-left:20px;border-left:1px solid var(--line)}
+ol.steps li::before{content:counter(st);font:800 2.4rem/1 var(--display);color:var(--blue)}
+ol.steps b{font:700 1.3rem/1.1 var(--display)}
+ol.steps span{color:var(--ink-soft);font-size:.98rem}
+@media (max-width:980px){ol.steps{grid-template-columns:1fr}ol.steps li + li{padding-left:0;border-left:0;border-top:1px solid var(--line)}}
+.offer.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+@media (max-width:900px){.plans{grid-template-columns:1fr}}
+.plan{background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--blue);padding:26px;display:flex;flex-direction:column;gap:12px}
+.plan.addon{border-top-color:var(--green)}
+.plan .price{margin-top:auto;padding-top:14px;border-top:1px solid var(--line);font:800 1.4rem/1.2 var(--display);text-transform:uppercase;letter-spacing:.04em;color:var(--ink)}
+.app-band .wrap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:40px;align-items:center}
+@media (max-width:820px){.app-band .wrap{grid-template-columns:1fr}}
+.app-band{background:var(--dark);color:#fff}
+.app-band h2{color:#fff}
+.app-band .eyebrow{color:var(--hivis)}
+.app-band .prose{color:#D3DCEC}
+.app-band .facts{color:var(--ink)}
+.app-band ul.checks{font-size:1.02rem}
+
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="ms2" viewBox="0 0 200 200">
+    <path id="arcTop" d="M 34 100 A 66 66 0 0 1 166 100" fill="none"/>
+    <path id="arcBot" d="M 26 100 A 74 74 0 0 0 174 100" fill="none"/>
+    <circle cx="100" cy="100" r="98" fill="#0B6B2E"/>
+    <circle cx="100" cy="100" r="92" fill="#FFFFFF"/>
+    <circle cx="100" cy="100" r="89" fill="#2E63F0"/>
+    <circle cx="100" cy="100" r="51" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+    <text font-family="Michroma, Arial, sans-serif" font-size="15.5" fill="#FFC21A" stroke="#FFC21A" stroke-width=".5" letter-spacing=".5"><textPath href="#arcTop" startOffset="50%" text-anchor="middle">MAKE SAFETY</textPath></text>
+    <text font-family="Michroma, Arial, sans-serif" font-size="15.5" fill="#FFC21A" stroke="#FFC21A" stroke-width=".5" letter-spacing=".5"><textPath href="#arcBot" startOffset="50%" text-anchor="middle">MAKE SENSE</textPath></text>
+    <text x="96" y="114" font-family="Michroma, Arial, sans-serif" font-size="38" fill="#FFFFFF" text-anchor="middle">MS</text>
+    <text x="134" y="84" font-family="Michroma, Arial, sans-serif" font-size="14" fill="#FFFFFF" text-anchor="middle">2</text>
+  </symbol>
+</svg>
+
+<div class="topbar">
+  <div class="wrap">
+    <span class="tm">Profit Preservation Through Better Risk Management®</span>
+    <span><a href="tel:+13189555476">318-955-5476</a> &nbsp;·&nbsp; <a href="mailto:troyking@makesafetymakesense.com">troyking@makesafetymakesense.com</a></span>
+  </div>
+</div>
+
+<header class="site">
+  <div class="wrap hdr" style="position:relative">
+    <a class="brand" href="#home" data-go="home" aria-label="Make Safety Make Sense home">
+      <svg role="img" aria-label="Make Safety Make Sense logo"><use href="#ms2"/></svg>
+      <span><b>Make Safety Make Sense</b><small>Construction Safety · OSHA Training</small></span>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mainNav">Menu</button>
+    <nav class="main" id="mainNav" aria-label="Main">
+      <a href="#home" data-go="home">Home</a>
+      <a href="#consulting" data-go="consulting">Consulting</a>
+      <a href="#training" data-go="training">Training</a>
+      <a href="#app" data-go="app">MS2 App</a>
+      <a href="#about" data-go="about">About</a>
+      <a href="#faq" data-go="faq">FAQ</a>
+      <a href="#contact" data-go="contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HOME ============ -->
+<div class="page" id="p-home">
+  <section class="hero">
+    <div class="wrap">
+      <div class="stack">
+        <h1>Safety that <span>pays for itself.</span></h1>
+        <p>National construction safety consulting and OSHA training for manufacturers and contractors, from a 30+ year construction veteran and 40-year trainer.</p>
+        <div class="btns">
+          <a class="btn hv" href="mailto:troyking@makesafetymakesense.com?subject=Consulting%20quote%20request">Get a Consulting Quote</a>
+          <a class="btn ghost-light" href="#training" data-go="training">Find a Training Course</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="trusted">
+    <div class="wrap">
+      <strong>Trusted by Mars Snacking for eight years.</strong>
+      <span class="logo-box"><img src="img/mars-snacking.png" alt="Mars Snacking logo"></span>
+      <p>We also deliver the construction OSHA safety course for another global pet care manufacturer, and have taught OSHA 30 and 10 Hour courses for general contractors nationwide.</p>
+    </div>
+  </div>
+
+  <section class="band">
+    <div class="wrap stack" style="gap:32px">
+      <h2>Two ways we help</h2>
+      <div class="grid2">
+        <div class="svc">
+          <img src="img/work-07.jpg" alt="Large equipment being delivered and set at a plant site" loading="lazy">
+          <div class="in">
+            <p class="eyebrow">Consulting</p>
+            <h3>Their risk becomes your risk.</h3>
+            <p>When contractors work in your facility, their risk becomes your risk. We help manufacturers manage construction safety on their sites, from contractor oversight and audits to OSHA and workers' comp consulting and written programs that fit how your company actually works. Need someone on site every day? We provide full-time safety professionals for your projects.</p>
+            <div class="btns"><a class="btn" href="#consulting" data-go="consulting">Explore Consulting</a></div>
+          </div>
+        </div>
+        <div class="svc">
+          <img src="img/class.jpg" alt="Troy King teaching an OSHA class" loading="lazy">
+          <div class="in">
+            <p class="eyebrow">Training</p>
+            <h3>Training people remember.</h3>
+            <p>OSHA 10 and 30 Hour for Construction, confined space, excavation, scaffolding, and custom programs built around your site, your hazards, and your crews. Training people remember, because it's built for the people who do the work.</p>
+            <div class="btns"><a class="btn" href="#training" data-go="training">See Training and Upcoming Classes</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band app-band">
+    <div class="wrap">
+      <div class="stack" style="gap:18px">
+        <p class="eyebrow">New · MS2™ Risk Check app</p>
+        <h2>Manage the risks, not the paperwork.</h2>
+        <p class="prose" style="font-size:1.12rem">Our yearly subscription puts the MS2 safety program on your crew's phones. Answer simple yes/no questions and get a risk level, permits, a training plan, and an inspection sheet before work starts.</p>
+        <div class="btns"><a class="btn hv" href="#app" data-go="app">See the App</a><a class="btn ghost-light" href="mailto:troyking@makesafetymakesense.com?subject=MS2%20Risk%20Check%20demo%20request">Request a Demo</a></div>
+      </div>
+      <div class="facts">
+        <h3>With a yearly subscription</h3>
+        <ul class="checks">
+          <li>MS2 Risk Check for foremen, managers, and planners</li>
+          <li>Optional Safety Manager add-on for AHAs and RFP submittals</li>
+          <li>Discounted rates on customized consulting</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt">
+    <div class="wrap parasite">
+      <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
+        <img src="img/parasite.png" alt="The Profit Parasite artwork">
+        <figcaption class="caption">Artwork © 2026 Make Safety Make Sense, LLC</figcaption>
+      </figure>
+      <div class="stack" style="gap:18px">
+        <h2>We know where your money is leaking.</h2>
+        <p class="prose" style="font-size:1.15rem">We've identified 20 common Profit Parasites: policies and procedures that cost companies money and add nothing to safety. Most companies have several.</p>
+        <div class="btns"><a class="btn" href="#review" data-go="consulting" data-anchor="review">Find Your Profit Parasites</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap stack" style="gap:28px">
+      <p class="eyebrow">Why Make Safety Make Sense</p>
+      <div class="why">
+        <div><h3>We've been where you are.</h3><p>Troy King started as an ironworker apprentice, served 10 years in the Air Force as a trainer and instructor, and has spent more than 30 years in construction safety and operations, from corporate safety director for an ENR Top 100 contractor to construction manager on $20M+ projects.</p></div>
+        <div><h3>Real solutions, not just rules.</h3><p>You get the standard, plus options for meeting it that fit your business and your budget.</p></div>
+        <div><h3>Credentials you can count on.</h3><p>OSHA 500 authorized trainer and NCCER Certified Master Trainer, leading a team of safety professionals with CSP and CHST credentials.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt">
+    <div class="wrap stack" style="gap:16px">
+      <p class="eyebrow">What participants say</p>
+      <blockquote>“Great job on your training. I learned a lot.”</blockquote>
+      <cite>Project Engineer, training participant</cite>
+    </div>
+  </section>
+</div>
+
+<!-- ============ CONSULTING ============ -->
+<div class="page" id="p-consulting" hidden>
+  <div class="page-head">
+    <div class="wrap stack" style="gap:16px">
+      <p class="eyebrow">Consulting</p>
+      <h1>Consulting</h1>
+      <p class="tagline">Profit Preservation Through Better Risk Management®</p>
+    </div>
+  </div>
+
+  <section class="band">
+    <div class="wrap grid2">
+      <div class="stack">
+        <h2>Compliance, the profit-preservation way.</h2>
+      </div>
+      <p class="prose" style="font-size:1.1rem">Falling short of OSHA requirements is expensive: citations, injuries, higher premiums, and lost work. We bring your company into compliance, but not by piling on paperwork and procedures. We start with what you already have, cut the Profit Parasites, and build only what protects your people and your bottom line. You end up compliant, safe, and spending less.</p>
+    </div>
+  </section>
+
+  <section class="band alt" style="padding-top:56px">
+    <div class="wrap">
+      <div class="offer">
+        <div><h3>Owner-side construction safety.</h3><p>When contractors work in your facility, their risk becomes your risk. We help manufacturers manage the construction work happening on their sites: contractor prequalification and oversight, multi-employer coordination, and making sure the people you hire work safely under your roof.</p></div>
+        <div><h3>Audits and inspections.</h3><p>Regular site audits that find the hazards before OSHA or an injury does, with practical fixes that fit your budget.</p></div>
+        <div><h3>Written programs.</h3><p>Safety programs written for how your company actually works, not pulled off a shelf. Every program comes with training so your people know how to use it.</p></div>
+        <div><h3>OSHA and workers' comp consulting.</h3><p>Fewer accidents mean lower workers' comp premiums. We show you where your money is going and how to spend it so you meet your safety goals and your financial ones.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap grid2">
+      <div class="stack" style="gap:18px">
+        <p class="eyebrow">On site, every day</p>
+        <h2>Full-Time Project Safety Professionals</h2>
+        <p class="prose">Some projects need a safety professional on site every day. We provide experienced, full-time safety professionals who become part of your project team for as long as the work lasts: running daily safety, managing contractors, conducting inspections and training, and keeping your project compliant from mobilization to closeout. You get the expertise without the long-term hire, and Troy King is always a phone call away for our people and yours.</p>
+        <div class="btns"><a class="btn" href="mailto:troyking@makesafetymakesense.com?subject=Project%20safety%20staffing">Staff Your Project</a></div>
+      </div>
+      <div class="facts">
+        <h3>Our safety professionals</h3>
+        <ul class="checks">
+          <li>Led by Troy King, an OSHA 500 authorized trainer since 1995 and NCCER Certified Master Trainer, with 30+ years in construction safety</li>
+          <li>Credentials across the team include the CSP (Certified Safety Professional), CHST (Construction Health and Safety Technician), and OSHA 500, with team members actively pursuing further certification</li>
+          <li>Every safety professional OSHA 30 trained, with years of hands-on field experience</li>
+          <li>Troy King backs every placement as an off-site resource and oversight, and he is always available to your team and ours</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt" id="review">
+    <div class="wrap stack" style="gap:32px">
+      <div class="stack" style="gap:10px">
+        <p class="eyebrow">Profit Preservation Review</p>
+        <h2>Turn Profit Parasites into Profit Preservers.</h2>
+      </div>
+      <div class="grid2">
+        <div class="stack" style="gap:10px">
+          <div class="art-pair">
+            <figure><img src="img/parasite.png" alt="The Profit Parasite artwork"><figcaption>The Profit Parasite</figcaption></figure>
+            <figure><img src="img/preservers.png" alt="The Profit Preservers artwork"><figcaption>The Profit Preservers</figcaption></figure>
+          </div>
+          <p class="caption">Artwork © 2026 Make Safety Make Sense, LLC</p>
+        </div>
+        <div class="stack" style="gap:20px">
+          <p class="prose">A Profit Parasite is any policy or procedure that costs you money and adds nothing to safety. We go through your operation to find them, drawing on the 20 we see most often, and show you exactly what they're costing you and how to turn them into Profit Preservers: practices that protect your people and your bottom line at the same time. For qualifying companies, 10% cost reductions are common.</p>
+          <div class="guarantee"><p><strong>Our guarantee for qualifying companies:</strong> For companies of sufficient size and scope, the savings we identify will cover our consulting fees within one year. We'll tell you up front whether your company qualifies before any work begins.</p></div>
+          <div class="btns">
+            <a class="btn hv" href="mailto:troyking@makesafetymakesense.com?subject=Profit%20Preservation%20Review%20-%20do%20we%20qualify%3F">See If You Qualify</a>
+            <a class="btn ghost" href="mailto:troyking@makesafetymakesense.com?subject=Consulting%20quote%20request">Get a Consulting Quote</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap grid2">
+      <div class="stack" style="gap:14px">
+        <p class="eyebrow">For MS2™ Risk Check subscribers</p>
+        <h2>Subscribers save on custom consulting.</h2>
+      </div>
+      <div class="stack" style="gap:16px">
+        <p class="prose" style="font-size:1.1rem">A yearly MS2 Risk Check subscription puts our risk assessments on your crews' phones, and it comes with discounted rates on customized consulting: written programs, audits, your site's rules built into the app, and the Profit Preservation Review.</p>
+        <div class="btns"><a class="btn" href="#app" data-go="app">See the MS2 Risk Check App</a></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ TRAINING ============ -->
+<div class="page" id="p-training" hidden>
+  <div class="page-head">
+    <div class="wrap stack" style="gap:16px">
+      <p class="eyebrow">Training</p>
+      <h1>Training</h1>
+      <p>OSHA Outreach courses and customized, site-specific training for manufacturers and contractors nationwide.</p>
+      <div class="btns"><a class="btn hv" href="#upcoming" data-go="training" data-anchor="upcoming">See Upcoming Classes</a></div>
+    </div>
+  </div>
+  <img class="banner" src="img/team-wide.jpg" alt="OSHA training class participants celebrating, September 2026">
+
+  <section class="band">
+    <div class="wrap">
+      <div class="course">
+        <div class="stack" style="gap:16px">
+          <p class="cfr">29 CFR 1926 · OSHA Outreach Training Program</p>
+          <h2>OSHA 30 Hour for Construction</h2>
+          <p class="prose">The same OSHA 30 course we deliver for Mars Snacking, a global pet care manufacturer, and general contractors nationwide. Taught by Troy King, an OSHA 500 authorized trainer and NCCER Certified Master Trainer with 30+ years in construction and 40 years as a trainer.</p>
+          <p class="prose">Built for supervisors, foremen, safety leads, and anyone responsible for other people on a construction site. Covers the OSHA construction standards, with a focus on the hazards that actually hurt people: falls, struck-by, caught-in/between, and electrical. You'll leave knowing the rules and practical ways to meet them on the job.</p>
+          <details class="stack" style="gap:12px">
+            <summary style="cursor:pointer;font-weight:700;color:var(--link)">See the full topic list</summary>
+            <div class="topics" style="margin-top:12px">
+              <div><b>Fall Protection</b><span class="cfr">Focus Four · Subpart M</span></div>
+              <div><b>Electrocution</b><span class="cfr">Focus Four · Subpart K</span></div>
+              <div><b>Struck-By</b><span class="cfr">Focus Four</span></div>
+              <div><b>Caught-In/Between</b><span class="cfr">Focus Four</span></div>
+              <div><b>Cranes</b><span class="cfr">Subpart CC</span></div>
+              <div><b>Personal Protective Equipment</b><span class="cfr">Subpart E</span></div>
+              <div><b>Stairways and Ladders</b><span class="cfr">Subpart X</span></div>
+              <div><b>Health Hazards: Silica, Asbestos, Lead</b><span class="cfr">1926.1153 · 1926.1101 · 1926.62</span></div>
+              <div><b>Hand and Power Tools</b><span class="cfr">Subpart I</span></div>
+              <div><b>Welding and Cutting</b><span class="cfr">Subpart J</span></div>
+              <div><b>Steel Erection</b><span class="cfr">Subpart R</span></div>
+              <div><b>Materials Handling</b><span class="cfr">Subpart H</span></div>
+              <div><b>Confined Space Entry</b><span class="cfr">Subpart AA</span></div>
+              <div><b>Scaffolds</b><span class="cfr">Subpart L</span></div>
+              <div><b>Excavations</b><span class="cfr">Subpart P</span></div>
+              <div><b>Managing Safety and Health</b><span class="cfr">Safety audit process</span></div>
+              <div><b>Client-specific topics</b><span class="cfr">Your site, your hazards</span></div>
+            </div>
+          </details>
+        </div>
+        <div class="facts">
+          <dl>
+            <dt>Length</dt><dd>30 hours over four and a half days. We break every hour instead of every two, because people retain more when they're rested and engaged.</dd>
+            <dt>Format</dt><dd>Join a regularly scheduled open-enrollment class, or we'll bring the course to your site.</dd>
+            <dt>Card</dt><dd>Official DOL/OSHA Outreach card</dd>
+          </dl>
+          <div class="btns"><a class="btn" href="mailto:troyking@makesafetymakesense.com?subject=OSHA%2030%20class%20request">Request a Class</a></div>
+        </div>
+      </div>
+
+      <div class="course">
+        <div class="stack" style="gap:16px">
+          <p class="cfr">29 CFR 1926 · OSHA Outreach Training Program</p>
+          <h2>OSHA 10 Hour for Construction</h2>
+          <p class="prose">The foundation every construction worker should have: hazard recognition, workers' rights, and the basics of staying safe on a jobsite, taught in plain language by someone who has done the work. Taught by Troy King, an OSHA 500 authorized trainer and NCCER Certified Master Trainer.</p>
+        </div>
+        <div class="facts">
+          <dl>
+            <dt>Length</dt><dd>10 hours over a day and a half, with a break every hour.</dd>
+            <dt>Format</dt><dd>Taught at your site for your crew. Group discounts for more than 10 participants.</dd>
+            <dt>Card</dt><dd>Official DOL/OSHA Outreach card</dd>
+          </dl>
+          <div class="btns"><a class="btn" href="mailto:troyking@makesafetymakesense.com?subject=On-site%20OSHA%2010%20class%20request">Request an On-Site Class</a></div>
+        </div>
+      </div>
+
+      <div class="course">
+        <div class="stack" style="gap:16px">
+          <p class="cfr">Built around your site</p>
+          <h2>Customized Training</h2>
+          <p class="prose">OSHA requires specific training for many construction hazards. We build it around your site, your hazards, and your crews, so it sticks.</p>
+          <div class="chips">
+            <span>Confined space: awareness, attendant, entrant, entry supervisor, rescue</span>
+            <span>Excavation and trenching</span><span>Scaffolding</span><span>Fall protection</span>
+            <span>Ladders and stairways</span><span>Electrical safety</span><span>Silica</span>
+            <span>Hazard communication</span><span>Respiratory protection</span><span>Other OSHA-required training</span>
+          </div>
+          <p class="prose">Every customized course includes a participant guide, hands-on activities, and a certificate of completion.</p>
+        </div>
+        <div class="facts">
+          <p>Tell us your site, your hazards, and who needs training. We'll put together a course and a quote.</p>
+          <div class="btns"><a class="btn" href="mailto:troyking@makesafetymakesense.com?subject=Customized%20training%20request">Tell Us What You Need</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt">
+    <div class="wrap stack" style="gap:28px">
+      <div class="stack" style="gap:10px">
+        <p class="eyebrow">For engineers and project managers</p>
+        <h2>PE/PM Specialty Safety© Courses</h2>
+        <p class="prose">Go deeper than the OSHA 30. These courses give project engineers and project managers a more technical understanding of the high-risk work they oversee. Courses are taught live online, so your engineers can join from anywhere. Need a version built around your company and your sites? We'll deliver it on site.</p>
+      </div>
+      <div class="ss">
+        <article><span class="code">SS-1</span><h3>Fall Protection</h3><p>Identify fall hazards, evaluate and assess risks, mitigate risks using various platforms and equipment, and learn the inspection requirements of the most common types of equipment and Personal Fall Arrest Systems.</p></article>
+        <article><span class="code">SS-2</span><h3>Scaffolding</h3><p>Identify the different types of scaffolds, evaluate and assess risks, and learn correct installation and breakdown, inspection requirements for the most common types, and the most common contractor errors when using scaffolding.</p></article>
+        <article><span class="code">SS-3</span><h3>Excavations</h3><p>Identify the different types of excavations, evaluate and assess risks, and learn the use of protective systems, inspection requirements, the most conventional protective systems, and the most common contractor errors involving excavations.</p></article>
+        <article><span class="code">SS-4</span><h3>Cranes and Rigging</h3><p>Identify the different types of cranes and rigging, evaluate and assess risks, and learn setup, use and breakdown, inspection requirements, and the most common contractor errors involving cranes and rigging.</p></article>
+      </div>
+      <div class="btns"><a class="btn" href="mailto:troyking@makesafetymakesense.com?subject=PE%2FPM%20Specialty%20Safety%20course%20request">Ask About Specialty Courses</a></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap stack" style="gap:24px">
+      <p class="eyebrow">What participants say</p>
+      <div class="grid2">
+        <div><blockquote>“Great job on your training. I learned a lot.”</blockquote><cite>Project Engineer</cite></div>
+        <div><blockquote>“The key points for each of the training topics. Direct and to the point. Sharing professional and personal stories that applied to the respective training topics.”</blockquote><cite>Project Engineer, on the strengths of the training</cite></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt" id="upcoming">
+    <div class="wrap stack" style="gap:28px">
+      <h2>Upcoming Classes</h2>
+      <div class="classes">
+        <div class="class-row">
+          <div class="date">Mar 2027<big>1–5</big></div>
+          <div class="stack" style="gap:4px"><h3>OSHA 30 Hour for Construction</h3><p>March 1–5, 2027 · Chattanooga, Tennessee</p></div>
+          <a class="btn hv" href="mailto:troyking@makesafetymakesense.com?subject=Reserve%20a%20seat%3A%20OSHA%2030%2C%20March%201-5%2C%202027%2C%20Chattanooga">Reserve a Seat</a>
+        </div>
+      </div>
+      <p class="prose">Seats are limited. To reserve yours or ask about group rates, call <a href="tel:+13189555476">318-955-5476</a> or email <a href="mailto:troyking@makesafetymakesense.com">troyking@makesafetymakesense.com</a>.</p>
+      <div class="facts" style="max-width:760px">
+        <h3>Class policies</h3>
+        <ul class="checks">
+          <li><strong>Minimum enrollment:</strong> classes run with 8 or more paid seats. If a class is under 8 two weeks before the start date, registered students move to the next scheduled class.</li>
+          <li><strong>Cancellations:</strong> full refund or transfer to another class up to 14 days before the start date. After that, seats can be transferred to a coworker but are not refundable.</li>
+        </ul>
+      </div>
+      <div class="stack" style="gap:12px">
+        <p><strong>Don't see a date that works?</strong> We'll bring the course to your site.</p>
+        <div class="btns"><a class="btn" href="mailto:troyking@makesafetymakesense.com?subject=On-site%20class%20request">Request an On-Site Class</a></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ MS2 RISK CHECK APP ============ -->
+<div class="page" id="p-app" hidden>
+  <div class="page-head">
+    <div class="wrap app-head">
+      <div class="stack" style="gap:16px">
+        <p class="eyebrow">MS2™ Risk Check · Coming soon</p>
+        <h1>Manage the risks, not the paperwork.</h1>
+        <p>MS2 Risk Check turns 40 years of field safety experience into simple yes/no questions. Pick your work, answer a few questions, and in minutes you get a risk level, permits, a training plan, and an inspection sheet.</p>
+        <div class="btns">
+          <a class="btn hv" href="mailto:troyking@makesafetymakesense.com?subject=MS2%20Risk%20Check%20demo%20request">Request a Demo</a>
+          <a class="btn ghost-light" href="mailto:troyking@makesafetymakesense.com?subject=MS2%20Risk%20Check%20launch%20list">Join the Launch List</a>
+        </div>
+      </div>
+      <div class="phone" aria-label="Example screen from the MS2 Risk Check app" role="img">
+        <div class="ph-bar">Make Safety Make Sense · Manage the risks</div>
+        <div class="ph-body">
+          <p class="ph-step">Step 2 of 8 · Activities</p>
+          <p class="ph-q">Will this job include Confined Space work?</p>
+          <div class="ph-yn"><span class="on">Yes</span><span>No</span></div>
+          <p class="ph-step" style="margin-top:4px">Types</p>
+          <div class="ph-chips"><span class="on">Permit-required entry</span><span>Tank cleaning</span><span class="on">Pit / vault</span></div>
+          <div class="ph-risk"><span>MS2 risk level</span><b>HIGH</b></div>
+          <p class="ph-life">◎ Level 1 life-saving controls flagged</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="band">
+    <div class="wrap grid2">
+      <div class="stack" style="gap:14px">
+        <p class="eyebrow">What it is</p>
+        <h2>Your safety plan, before work starts.</h2>
+      </div>
+      <div class="stack" style="gap:14px">
+        <p class="prose" style="font-size:1.1rem">MS2 Risk Check is a phone-and-tablet app built on the MS2 safety program. Pick the activities, tools, and equipment for a job, and the app assigns each one an MS2 risk level using Troy King's field-built risk assessments and SOPs: 112 activities across 20 trades, and 49 tools and pieces of equipment.</p>
+        <p class="prose">It starts from OSHA minimums, and you add your site's own rules on top. The crew gets what it needs before the first tool comes out: a risk report, permits and inspections, a training plan, and an inspection sheet.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt">
+    <div class="wrap stack" style="gap:28px">
+      <h2>How it works</h2>
+      <ol class="steps">
+        <li><b>Name the job.</b><span>One task for today's crew, or a whole project broken into phases.</span></li>
+        <li><b>Pick the work, one trade at a time.</b><span>"Will this job include Confined Space work?" Yes or no. If yes, tap the types.</span></li>
+        <li><b>Pick tools and equipment.</b><span>The app suggests what the MS2 SOPs call for.</span></li>
+        <li><b>Answer yes or no.</b><span>Public nearby? Could it stop production? Recent injuries? Your answers can only raise a risk, never lower it.</span></li>
+        <li><b>Get your plan.</b><span>Risk report, permits, life-saving controls, a training plan, an inspection sheet, and AHAs.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap stack" style="gap:28px">
+      <p class="eyebrow">Why MS2 is different</p>
+      <div class="offer">
+        <div><h3>Built from real risk assessments.</h3><p>Every score comes from MS2 field-proven risk assessments and SOPs, not generic checklists.</p></div>
+        <div><h3>OSHA minimums, your site's rules.</h3><p>It starts from OSHA minimums, and you add your site's requirements on top.</p></div>
+        <div><h3>Right-sized controls.</h3><p>MS2 puts controls where the risk is and avoids costly Profit Parasites, like treating every power tool as hot work.</p></div>
+        <div><h3>Life-saving controls stand out.</h3><p>Level 1 critical behaviors are flagged on every report and inspection.</p></div>
+        <div><h3>Training gaps are clear.</h3><p>If a worker isn't trained, the plan says so. Untrained workers don't do the work.</p></div>
+        <div><h3>AHAs crews actually read.</h3><p>MS2 recommends activity AHAs of 3 to 4 pages instead of 30-page project binders. Both are available.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt" id="plans">
+    <div class="wrap stack" style="gap:28px">
+      <div class="stack" style="gap:10px">
+        <p class="eyebrow">Yearly subscription</p>
+        <h2>Pick the level that fits your role.</h2>
+        <p class="prose muted">MS2 Risk Check is sold as a yearly subscription. The Safety Manager add-on is added on top of either base plan. Company bundles: 10% off for 10 or more users, 20% off for 25 or more.</p>
+        <p class="prose"><strong>Founding subscribers save 20% on their first year.</strong> <a href="mailto:troyking@makesafetymakesense.com?subject=MS2%20Risk%20Check%20launch%20list">Join the launch list</a> to lock in the founding rate.</p>
+      </div>
+      <div class="plans">
+        <article class="plan">
+          <p class="eyebrow">Base plan</p>
+          <h3>Foreman</h3>
+          <p class="muted">Foremen, crew leads, supervisors</p>
+          <ul class="checks">
+            <li>Assess one task per job, trade by trade</li>
+            <li>MS2 risk level and 5×5 risk matrix</li>
+            <li>Permits and inspections</li>
+            <li>Level 1 life-saving critical behaviors</li>
+            <li>Training plan and inspection sheet</li>
+          </ul>
+          <p class="price">$300 per user / year</p>
+        </article>
+        <article class="plan">
+          <p class="eyebrow">Base plan</p>
+          <h3>Manager / Planner</h3>
+          <p class="muted">Project managers, construction managers, planners</p>
+          <ul class="checks">
+            <li>Everything in Foreman</li>
+            <li>Whole projects broken into scopes of work: demo, concrete, equipment, conveyors, and more</li>
+            <li>Crew size for each phase</li>
+            <li>One rolled-up report for the whole project</li>
+          </ul>
+          <p class="price">$540 per user / year</p>
+        </article>
+        <article class="plan addon">
+          <p class="eyebrow">Add-on</p>
+          <h3>Safety Manager</h3>
+          <p class="muted">Safety managers and safety professionals</p>
+          <ul class="checks">
+            <li>Builds the safety documents from the PM/CM's assessment</li>
+            <li>Activity AHAs (MS2 recommended, 3 to 4 pages each) or one Project AHA</li>
+            <li>Ready for RFP submittals, then issued to the field after award</li>
+            <li>Profit Preserver content (coming)</li>
+          </ul>
+          <p class="price">+$480 per user / year</p>
+        </article>
+      </div>
+      <div class="facts">
+        <h3>Every subscription includes</h3>
+        <ul class="checks">
+          <li><strong>Discounted consulting:</strong> 10% off Make Safety Make Sense consulting for companies with 1 to 9 users, 20% off for 10 or more.</li>
+          <li><strong>Direct phone and email support from Troy King:</strong> 2 hours a month for company plans (5 or more users, or the Safety Manager add-on) and 1 hour a month for single users.</li>
+          <li><strong>A written safety plan at no charge</strong> with the Safety Manager add-on or 10 or more users.</li>
+          <li><strong>OSHA training credit:</strong> a $150 credit for every 10 users, good toward an OSHA 30 seat or an on-site OSHA 10 class.</li>
+        </ul>
+        <p class="caption">Support hours do not roll over. <a href="#consulting" data-go="consulting">See our consulting services</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap grid2">
+      <div class="stack" style="gap:14px">
+        <p class="eyebrow">Who it's for</p>
+        <h2>Built for the people who plan and do the work.</h2>
+        <p class="prose">Foremen and supervisors, project and construction managers, and safety professionals at contractors working in operating plants and on new construction.</p>
+      </div>
+      <div class="facts">
+        <h3>Built by Troy King</h3>
+        <ul class="checks">
+          <li>OSHA 500 authorized trainer since 1995</li>
+          <li>NCCER Certified Master Trainer</li>
+          <li>30+ years in construction safety</li>
+        </ul>
+        <p class="caption">MS2 Risk Check supports, and does not replace, a competent person's review. MS2™ is a trademark of Make Safety Make Sense, LLC.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<div class="page" id="p-about" hidden>
+  <div class="page-head">
+    <div class="wrap stack" style="gap:16px">
+      <p class="eyebrow">About</p>
+      <h1>About Troy King</h1>
+    </div>
+  </div>
+
+  <section class="band">
+    <div class="wrap about-top">
+      <figure style="margin:0"><img src="img/troy.jpg" alt="Troy King teaching a training class, September 2026"></figure>
+      <div class="stack" style="gap:30px">
+        <div class="stack">
+          <h2>Three generations of construction.</h2>
+          <p class="prose">Troy King's construction roots go back three generations. He started as an ironworker apprentice right out of high school, then served 10 years in the U.S. Air Force, where he began his 40-year career as a trainer and instructor, before coming back to the trade as an ironworker. That's where he saw the opportunity to make a difference, in an industry where it was still considered a good day if no one was killed or hospitalized.</p>
+          <p class="prose">Troy paid for his first safety course himself. He still calls it the most rewarding investment of his life.</p>
+        </div>
+        <div class="creds">
+          <span><b>OSHA 500</b> Authorized Trainer since 1995</span>
+          <span><b>NCCER</b> Certified Master Trainer</span>
+          <span><b>40 years</b> as a trainer</span>
+          <span><b>30+ years</b> in construction</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt">
+    <div class="wrap grid2">
+      <div class="stack">
+        <h2>From the safety office to the project office.</h2>
+        <p class="prose">Troy served as corporate safety director for an ENR Top 100 government contractor, where four projects under his direction earned national safety awards. He then moved to the operations side as a construction manager on $20M+ projects, bringing safety, risk management, and behavioral safety into how the work got done, and earning national safety awards there too.</p>
+        <p class="prose">That combination is rare. Troy understands safety the way a safety director does and the way a project manager does, which means he knows how to protect people without wrecking the schedule or the budget.</p>
+      </div>
+      <div class="stack">
+        <h2>Trusted nationally.</h2>
+        <p class="prose">Today, Make Safety Make Sense provides consulting, training, and full-time project safety professionals to manufacturers and contractors nationwide. For eight years, Troy has worked with Mars Snacking, delivering OSHA 30 training and helping manage construction safety at their facilities, and he delivers the construction OSHA safety course for another global pet care manufacturer. He has also taught OSHA 30 and 10 Hour courses for general contractors nationwide.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap grid2">
+      <div class="stack">
+        <h2>What you can expect.</h2>
+        <p class="prose">Clients get more than the standards and rules. They get real-life solutions, options for implementation, and alternatives that fit their business and their budget. And the training? People remember it, because it's built for the people who do the work.</p>
+        <p class="prose">Troy has been an OSHA 500 authorized trainer since 1995 and is a Certified Master Trainer through the National Center for Construction Education and Research (NCCER).</p>
+      </div>
+      <div class="stack">
+        <h2>Off the clock.</h2>
+        <p class="prose">Troy loves a challenge, his Harley-Davidson, his 6 children, and his 14 grandchildren (with hopefully more to come).</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt">
+    <div class="wrap stack" style="gap:26px">
+      <div class="stack" style="gap:10px">
+        <p class="eyebrow">Our Work</p>
+        <h2>On the job.</h2>
+      </div>
+      <div class="gallery">
+        <figure><img src="img/work-01.jpg" alt="" loading="lazy"><figcaption>Process tank installation</figcaption></figure>
+        <figure><img src="img/work-02.jpg" alt="" loading="lazy"><figcaption>Early-morning concrete pour</figcaption></figure>
+        <figure><img src="img/work-03.jpg" alt="" loading="lazy"><figcaption>Forming and site work</figcaption></figure>
+        <figure><img src="img/work-04.jpg" alt="" loading="lazy"><figcaption>Critical crane lift</figcaption></figure>
+        <figure><img src="img/work-05.jpg" alt="" loading="lazy"><figcaption>Rooftop equipment work</figcaption></figure>
+        <figure><img src="img/work-06.jpg" alt="" loading="lazy"><figcaption>Overnight slab pour</figcaption></figure>
+        <figure><img src="img/work-07.jpg" alt="" loading="lazy"><figcaption>Equipment delivery and setting</figcaption></figure>
+        <figure><img src="img/work-08.jpg" alt="" loading="lazy"><figcaption>Crane work at the roofline</figcaption></figure>
+        <figure><img src="img/work-09.jpg" alt="" loading="lazy"><figcaption>Interior fit-out with aerial lifts</figcaption></figure>
+        <figure><img src="img/work-10.jpg" alt="" loading="lazy"><figcaption>Steel module lift</figcaption></figure>
+        <figure><img src="img/work-11.jpg" alt="" loading="lazy"><figcaption>Tower crane over a rooftop</figcaption></figure>
+        <figure><img src="img/work-12.jpg" alt="" loading="lazy"><figcaption>Structural steel erection</figcaption></figure>
+      </div>
+      <div class="btns"><a class="btn" href="#contact" data-go="contact">Work With Troy</a></div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ FAQ ============ -->
+<div class="page" id="p-faq" hidden>
+  <div class="page-head">
+    <div class="wrap stack" style="gap:16px">
+      <p class="eyebrow">FAQ</p>
+      <h1>Frequently Asked Questions</h1>
+      <p>Please reach us at troyking@makesafetymakesense.com or 318-955-5476 if you can't find an answer to your question.</p>
+    </div>
+  </div>
+  <section class="band">
+    <div class="wrap">
+      <div class="faq">
+        <details open><summary>What is Make Safety Make Sense about?</summary><div class="ans"><p class="prose">Make Safety Make Sense provides construction safety consulting, training, and full-time project safety professionals for manufacturers and the contractors who work on their sites. We show you how to keep your people safe while identifying high-risk activities and cost-effective ways to manage them.</p></div></details>
+        <details><summary>What are Profit Parasites?</summary><div class="ans"><img src="img/parasite.png" alt="The Profit Parasite artwork"><p class="prose">Profit Parasites are policies and procedures that cost you money and add nothing to safety or to your work. In some cases, they're simply wasting money. We've identified 20 that we see most often. One of the most common is going beyond the standard to "make it safer." There is only safe or not safe. Anything past safe is wasted time and money.</p></div></details>
+        <details><summary>What are Profit Preservers?</summary><div class="ans"><img src="img/preservers.png" alt="The Profit Preservers artwork" style="width:140px"><p class="prose">We use the term two ways. First, a process that can be revised to save you money is a Profit Preserver. Second, we use it to recognize the people in the profit preservation fields: safety, legal, human resources, and others.</p></div></details>
+        <details><summary>Do you work outside your home area?</summary><div class="ans"><p class="prose">Yes. We serve clients nationwide, both for consulting and for on-site training.</p></div></details>
+        <details><summary>Can individuals sign up for OSHA 30?</summary><div class="ans"><p class="prose">Yes. Our OSHA 30 Hour classes are regularly scheduled and open to individual enrollment. OSHA 10 is taught at your site for your crew. See <a href="#upcoming" data-go="training" data-anchor="upcoming">Upcoming Classes</a> on the Training page, or contact us to reserve a seat.</p></div></details>
+        <details><summary>Can you train our crews at our site?</summary><div class="ans"><p class="prose">Yes. We deliver OSHA 10 and 30, and customized training such as confined space, excavation, and scaffolding, at your facility, built around your hazards.</p></div></details>
+        <details><summary>What is the MS2 Risk Check app?</summary><div class="ans"><p class="prose">A phone-and-tablet app, sold as a yearly subscription, that turns the MS2 safety program into simple yes/no questions and produces a risk report, permits, a training plan, and an inspection sheet for each job. The Safety Manager add-on also builds AHAs for RFP submittals. Subscribers get discounted rates on customized consulting. <a href="#app" data-go="app">Learn more</a>.</p></div></details>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ CONTACT ============ -->
+<div class="page" id="p-contact" hidden>
+  <div class="page-head">
+    <div class="wrap stack" style="gap:16px">
+      <p class="eyebrow">Contact</p>
+      <h1>Serving clients nationwide.</h1>
+      <p>Call or email Troy directly about consulting, project staffing, or training.</p>
+    </div>
+  </div>
+  <section class="band">
+    <div class="wrap stack" style="gap:28px">
+      <div class="contact-cards">
+        <div class="cc">
+          <p class="eyebrow">Call</p>
+          <a class="big" href="tel:+13189555476" style="text-decoration:none">318-955-5476</a>
+          <button class="copy" type="button" id="copyPhone" data-copy="318-955-5476">Copy number</button>
+        </div>
+        <div class="cc">
+          <p class="eyebrow">Email</p>
+          <a class="big" href="mailto:troyking@makesafetymakesense.com" style="text-decoration:none">troyking@<wbr>makesafetymakesense.com</a>
+          <button class="copy" type="button" id="copyEmail" data-copy="troyking@makesafetymakesense.com">Copy email</button>
+        </div>
+      </div>
+      <div class="grid2" style="gap:28px 40px">
+        <div class="stack" style="gap:10px"><h3>Consulting</h3><p class="muted">Audits, written programs, OSHA and workers' comp, and the Profit Preservation Review.</p><a href="mailto:troyking@makesafetymakesense.com?subject=Consulting%20quote%20request">Get a Consulting Quote</a></div>
+        <div class="stack" style="gap:10px"><h3>Project staffing</h3><p class="muted">Full-time safety professionals on your site from mobilization to closeout.</p><a href="mailto:troyking@makesafetymakesense.com?subject=Project%20safety%20staffing">Staff Your Project</a></div>
+        <div class="stack" style="gap:10px"><h3>Training</h3><p class="muted">Open-enrollment OSHA 30, on-site OSHA 10 and 30 classes, and customized courses.</p><a href="mailto:troyking@makesafetymakesense.com?subject=Training%20request">Request a Class</a></div>
+        <div class="stack" style="gap:10px"><h3>MS2 Risk Check app</h3><p class="muted">See the app in action and hear first when yearly subscriptions open.</p><a href="mailto:troyking@makesafetymakesense.com?subject=MS2%20Risk%20Check%20demo%20request">Request a Demo</a></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<section class="cta" id="ctaBand">
+  <div class="wrap">
+    <div class="stack" style="gap:8px">
+      <h2>Serving clients nationwide.</h2>
+      <p>Call <a class="plain" href="tel:+13189555476">318-955-5476</a> or email <a class="plain" href="mailto:troyking@makesafetymakesense.com">troyking@makesafetymakesense.com</a>.</p>
+    </div>
+    <a class="btn hv" href="#contact" data-go="contact">Contact Us</a>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="stack" style="gap:12px">
+      <div style="display:flex;gap:12px;align-items:center"><svg width="52" height="52" role="img" aria-label="Make Safety Make Sense logo"><use href="#ms2"/></svg><b style="font:800 1.3rem/1 var(--display);text-transform:uppercase;color:#fff">Make Safety Make Sense, LLC</b></div>
+      <p>Profit Preservation Through Better Risk Management®</p>
+    </div>
+    <div><h4>Pages</h4><ul>
+      <li><a href="#home" data-go="home">Home</a></li><li><a href="#consulting" data-go="consulting">Consulting</a></li><li><a href="#training" data-go="training">Training</a></li><li><a href="#app" data-go="app">MS2 Risk Check App</a></li><li><a href="#about" data-go="about">About</a></li><li><a href="#faq" data-go="faq">FAQ</a></li><li><a href="#contact" data-go="contact">Contact</a></li></ul></div>
+    <div><h4>Contact</h4><ul>
+      <li><a href="tel:+13189555476">318-955-5476</a></li>
+      <li><a href="mailto:troyking@makesafetymakesense.com">troyking@makesafetymakesense.com</a></li>
+      <li>makesafetymakesense.com</li></ul></div>
+    <div class="legal"><span>Copyright © 2026 Make Safety Make Sense, LLC - All Rights Reserved.</span><span>Mars Snacking name and logo used by permission.</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var pages=["home","consulting","training","app","about","faq","contact"];
+  var nav=document.getElementById("mainNav"), btn=document.getElementById("menuBtn");
+  function show(name, anchor){
+    if(pages.indexOf(name)<0) name="home";
+    pages.forEach(function(p){ document.getElementById("p-"+p).hidden = (p!==name); });
+    document.getElementById("ctaBand").hidden = (name==="contact");
+    document.querySelectorAll("nav.main a").forEach(function(a){
+      if(a.dataset.go===name) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current");
+    });
+    nav.classList.remove("open"); btn.setAttribute("aria-expanded","false");
+    var target = anchor && document.getElementById(anchor);
+    if(target){ requestAnimationFrame(function(){ target.scrollIntoView({block:"start"}); }); }
+    else window.scrollTo(0,0);
+    var t={home:"Make Safety Make Sense",consulting:"Consulting",training:"Training",app:"MS2 Risk Check App",about:"About Troy King",faq:"FAQ",contact:"Contact"}[name];
+    document.title = name==="home" ? t : t+" · Make Safety Make Sense";
+  }
+  document.addEventListener("click",function(e){
+    var a=e.target.closest("[data-go]"); if(!a) return;
+    e.preventDefault();
+    var name=a.dataset.go, anchor=a.dataset.anchor;
+    try{ history.replaceState(null,"","#"+(anchor||name)); }catch(err){}
+    show(name,anchor);
+  });
+  btn.addEventListener("click",function(){ var o=nav.classList.toggle("open"); btn.setAttribute("aria-expanded",o?"true":"false"); });
+  document.querySelectorAll(".copy").forEach(function(b){
+    b.addEventListener("click",function(){
+      var v=b.dataset.copy, label=b.textContent;
+      function done(){ b.textContent="Copied"; setTimeout(function(){ b.textContent=label; },1600); }
+      if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(v).then(done,function(){ b.textContent=v; }); }
+      else b.textContent=v;
+    });
+  });
+  var h=(location.hash||"").replace("#","");
+  var map={review:["consulting","review"],upcoming:["training","upcoming"],plans:["app","plans"]};
+  if(map[h]) show(map[h][0],map[h][1]); else show(h||"home");
+})();
+</script>
+
+</body></html>
