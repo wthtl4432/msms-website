@@ -205,6 +205,21 @@ ul.checks li::before{content:"";position:absolute;left:0;top:.45em;width:14px;he
 .copy{align-self:flex-start;font:600 .9rem/1 var(--body);background:transparent;border:1px solid var(--line);color:var(--ink);padding:9px 12px;cursor:pointer}
 .copy:hover{border-color:var(--blue);color:var(--blue)}
 
+/* request form */
+.req{background:var(--surface);border:1px solid var(--line);padding:28px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 20px}
+@media (max-width:720px){.req{grid-template-columns:1fr;padding:20px}}
+.req .full{grid-column:1/-1}
+#request{scroll-margin-top:130px}
+.req label{display:flex;flex-direction:column;gap:6px;font:600 .95rem/1.2 var(--body);color:var(--ink)}
+.req label span.opt{font-weight:400;color:var(--ink-soft)}
+.req input,.req textarea{font:400 1rem/1.4 var(--body);color:var(--ink);background:var(--paper);border:1px solid var(--line);padding:12px;width:100%;box-sizing:border-box}
+.req input:focus,.req textarea:focus{outline:2px solid var(--blue);outline-offset:1px;border-color:var(--blue)}
+.req textarea{min-height:140px;resize:vertical}
+.req .hp{position:absolute;left:-9999px}
+.req .status{margin:0;font-weight:600}
+.req .status.err{color:#B3261E}
+.req-done{background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--green);padding:28px}
+
 footer.site{background:var(--dark);color:#C4CEE0;font-size:.92rem}
 footer.site .wrap{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr);gap:32px;padding-block:48px 24px}
 footer.site h4{margin:0 0 10px;font:700 1.05rem/1 var(--display);text-transform:uppercase;letter-spacing:.08em;color:#fff}
@@ -312,7 +327,7 @@ ol.steps span{color:var(--ink-soft);font-size:.98rem}
         <h1>Safety that <span>pays for itself.</span></h1>
         <p>National construction safety consulting and OSHA training for manufacturers and contractors, from a 30+ year construction veteran and 40-year trainer.</p>
         <div class="btns">
-          <a class="btn hv" href="mailto:troyking@makesafetymakesense.com?subject=Consulting%20quote%20request">Get a Consulting Quote</a>
+          <a class="btn hv" href="#contact" data-go="contact" data-anchor="request" data-topic="Consulting quote request">Get a Consulting Quote</a>
           <a class="btn ghost-light" href="#training" data-go="training">Find a Training Course</a>
         </div>
       </div>
@@ -359,7 +374,7 @@ ol.steps span{color:var(--ink-soft);font-size:.98rem}
         <p class="eyebrow">New · MS2™ Risk Check app</p>
         <h2>Manage the risks, not the paperwork.</h2>
         <p class="prose" style="font-size:1.12rem">Our yearly subscription puts the MS2 safety program on your crew's phones. Answer simple yes/no questions and get a risk level, permits, a training plan, and an inspection sheet before work starts.</p>
-        <div class="btns"><a class="btn hv" href="#app" data-go="app">See the App</a><a class="btn ghost-light" href="mailto:troyking@makesafetymakesense.com?subject=MS2%20Risk%20Check%20demo%20request">Request a Demo</a></div>
+        <div class="btns"><a class="btn hv" href="#app" data-go="app">See the App</a><a class="btn ghost-light" href="#contact" data-go="contact" data-anchor="request" data-topic="MS2 Risk Check demo request">Request a Demo</a></div>
       </div>
       <div class="facts">
         <h3>With a yearly subscription</h3>
@@ -442,7 +457,7 @@ ol.steps span{color:var(--ink-soft);font-size:.98rem}
         <p class="eyebrow">On site, every day</p>
         <h2>Full-Time Project Safety Professionals</h2>
         <p class="prose">Some projects need a safety professional on site every day. We provide experienced, full-time safety professionals who become part of your project team for as long as the work lasts: running daily safety, managing contractors, conducting inspections and training, and keeping your project compliant from mobilization to closeout. You get the expertise without the long-term hire, and Troy King is always a phone call away for our people and yours.</p>
-        <div class="btns"><a class="btn" href="mailto:troyking@makesafetymakesense.com?subject=Project%20safety%20staffing">Staff Your Project</a></div>
+        <div class="btns"><a class="btn" href="#contact" data-go="contact" data-anchor="request" data-topic="Project safety staffing">Staff Your Project</a></div>
       </div>
       <div class="facts">
         <h3>Our safety professionals</h3>
@@ -474,8 +489,8 @@ ol.steps span{color:var(--ink-soft);font-size:.98rem}
           <p class="prose">A Profit Parasite is any policy or procedure that costs you money and adds nothing to safety. We go through your operation to find them, drawing on the 20 we see most often, and show you exactly what they're costing you and how to turn them into Profit Preservers: practices that protect your people and your bottom line at the same time. For qualifying companies, 10% cost reductions are common.</p>
           <div class="guarantee"><p><strong>Our guarantee for qualifying companies:</strong> For companies of sufficient size and scope, the savings we identify will cover our consulting fees within one year. We'll tell you up front whether your company qualifies before any work begins.</p></div>
           <div class="btns">
-            <a class="btn hv" href="mailto:troyking@makesafetymakesense.com?subject=Profit%20Preservation%20Review%20-%20do%20we%20qualify%3F">See If You Qualify</a>
-            <a class="btn ghost" href="mailto:troyking@makesafetymakesense.com?subject=Consulting%20quote%20request">Get a Consulting Quote</a>
+            <a class="btn hv" href="#contact" data-go="contact" data-anchor="request" data-topic="Profit Preservation Review - do we qualify?">See If You Qualify</a>
+            <a class="btn ghost" href="#contact" data-go="contact" data-anchor="request" data-topic="Consulting quote request">Get a Consulting Quote</a>
           </div>
         </div>
       </div>
@@ -545,7 +560,7 @@ ol.steps span{color:var(--ink-soft);font-size:.98rem}
             <dt>Format</dt><dd>Join a regularly scheduled open-enrollment class, or we'll bring the course to your site.</dd>
             <dt>Card</dt><dd>Official DOL/OSHA Outreach card</dd>
           </dl>
-          <div class="btns"><a class="btn" href="mailto:troyking@makesafetymakesense.com?subject=OSHA%2030%20class%20request">Request a Class</a></div>
+          <div class="btns"><a class="btn" href="#contact" data-go="contact" data-anchor="request" data-topic="OSHA 30 class request">Request a Class</a></div>
         </div>
       </div>
 
@@ -561,7 +576,7 @@ ol.steps span{color:var(--ink-soft);font-size:.98rem}
             <dt>Format</dt><dd>Taught at your site for your crew. Group discounts for more than 10 participants.</dd>
             <dt>Card</dt><dd>Official DOL/OSHA Outreach card</dd>
           </dl>
-          <div class="btns"><a class="btn" href="mailto:troyking@makesafetymakesense.com?subject=On-site%20OSHA%2010%20class%20request">Request an On-Site Class</a></div>
+          <div class="btns"><a class="btn" href="#contact" data-go="contact" data-anchor="request" data-topic="On-site OSHA 10 class request">Request an On-Site Class</a></div>
         </div>
       </div>
 
@@ -580,7 +595,7 @@ ol.steps span{color:var(--ink-soft);font-size:.98rem}
         </div>
         <div class="facts">
           <p>Tell us your site, your hazards, and who needs training. We'll put together a course and a quote.</p>
-          <div class="btns"><a class="btn" href="mailto:troyking@makesafetymakesense.com?subject=Customized%20training%20request">Tell Us What You Need</a></div>
+          <div class="btns"><a class="btn" href="#contact" data-go="contact" data-anchor="request" data-topic="Customized training request">Tell Us What You Need</a></div>
         </div>
       </div>
     </div>
@@ -599,7 +614,7 @@ ol.steps span{color:var(--ink-soft);font-size:.98rem}
         <article><span class="code">SS-3</span><h3>Excavations</h3><p>Identify the different types of excavations, evaluate and assess risks, and learn the use of protective systems, inspection requirements, the most conventional protective systems, and the most common contractor errors involving excavations.</p></article>
         <article><span class="code">SS-4</span><h3>Cranes and Rigging</h3><p>Identify the different types of cranes and rigging, evaluate and assess risks, and learn setup, use and breakdown, inspection requirements, and the most common contractor errors involving cranes and rigging.</p></article>
       </div>
-      <div class="btns"><a class="btn" href="mailto:troyking@makesafetymakesense.com?subject=PE%2FPM%20Specialty%20Safety%20course%20request">Ask About Specialty Courses</a></div>
+      <div class="btns"><a class="btn" href="#contact" data-go="contact" data-anchor="request" data-topic="PE/PM Specialty Safety course request">Ask About Specialty Courses</a></div>
     </div>
   </section>
 
@@ -620,7 +635,7 @@ ol.steps span{color:var(--ink-soft);font-size:.98rem}
         <div class="class-row">
           <div class="date">Mar 2027<big>1–5</big></div>
           <div class="stack" style="gap:4px"><h3>OSHA 30 Hour for Construction</h3><p>March 1–5, 2027 · Chattanooga, Tennessee</p></div>
-          <a class="btn hv" href="mailto:troyking@makesafetymakesense.com?subject=Reserve%20a%20seat%3A%20OSHA%2030%2C%20March%201-5%2C%202027%2C%20Chattanooga">Reserve a Seat</a>
+          <a class="btn hv" href="#contact" data-go="contact" data-anchor="request" data-topic="Reserve a seat: OSHA 30, March 1-5, 2027, Chattanooga">Reserve a Seat</a>
         </div>
       </div>
       <p class="prose">Seats are limited. To reserve yours or ask about group rates, call <a href="tel:+13189555476">318-955-5476</a> or email <a href="mailto:troyking@makesafetymakesense.com">troyking@makesafetymakesense.com</a>.</p>
@@ -633,7 +648,7 @@ ol.steps span{color:var(--ink-soft);font-size:.98rem}
       </div>
       <div class="stack" style="gap:12px">
         <p><strong>Don't see a date that works?</strong> We'll bring the course to your site.</p>
-        <div class="btns"><a class="btn" href="mailto:troyking@makesafetymakesense.com?subject=On-site%20class%20request">Request an On-Site Class</a></div>
+        <div class="btns"><a class="btn" href="#contact" data-go="contact" data-anchor="request" data-topic="On-site class request">Request an On-Site Class</a></div>
       </div>
     </div>
   </section>
@@ -644,12 +659,12 @@ ol.steps span{color:var(--ink-soft);font-size:.98rem}
   <div class="page-head">
     <div class="wrap app-head">
       <div class="stack" style="gap:16px">
-        <p class="eyebrow">MS2™ Risk Check · Coming soon</p>
+        <p class="eyebrow">MS2™ Risk Check · Yearly subscription</p>
         <h1>Manage the risks, not the paperwork.</h1>
         <p>MS2 Risk Check turns 40 years of field safety experience into simple yes/no questions. Pick your work, answer a few questions, and in minutes you get a risk level, permits, a training plan, and an inspection sheet.</p>
         <div class="btns">
-          <a class="btn hv" href="mailto:troyking@makesafetymakesense.com?subject=MS2%20Risk%20Check%20demo%20request">Request a Demo</a>
-          <a class="btn ghost-light" href="mailto:troyking@makesafetymakesense.com?subject=MS2%20Risk%20Check%20launch%20list">Join the Launch List</a>
+          <a class="btn hv" href="#contact" data-go="contact" data-anchor="request" data-topic="MS2 Risk Check demo request">Request a Demo</a>
+          <a class="btn ghost-light" href="#contact" data-go="contact" data-anchor="request" data-topic="MS2 Risk Check launch list">Join the Launch List</a>
         </div>
       </div>
       <div class="phone" aria-label="Example screen from the MS2 Risk Check app" role="img">
@@ -713,7 +728,7 @@ ol.steps span{color:var(--ink-soft);font-size:.98rem}
         <p class="eyebrow">Yearly subscription</p>
         <h2>Pick the level that fits your role.</h2>
         <p class="prose muted">MS2 Risk Check is sold as a yearly subscription. The Safety Manager add-on is added on top of either base plan. Company bundles: 10% off for 10 or more users, 20% off for 25 or more.</p>
-        <p class="prose"><strong>Founding subscribers save 20% on their first year.</strong> <a href="mailto:troyking@makesafetymakesense.com?subject=MS2%20Risk%20Check%20launch%20list">Join the launch list</a> to lock in the founding rate.</p>
+        <p class="prose"><strong>Founding subscribers save 20% on their first year.</strong> <a href="#contact" data-go="contact" data-anchor="request" data-topic="MS2 Risk Check launch list">Join the launch list</a> to lock in the founding rate.</p>
       </div>
       <div class="plans">
         <article class="plan">
@@ -898,11 +913,31 @@ ol.steps span{color:var(--ink-soft);font-size:.98rem}
     <div class="wrap stack" style="gap:16px">
       <p class="eyebrow">Contact</p>
       <h1>Serving clients nationwide.</h1>
-      <p>Call or email Troy directly about consulting, project staffing, or training.</p>
+      <p>Send a request below, or call or email Troy directly about consulting, project staffing, training, or the MS2 Risk Check app.</p>
     </div>
   </div>
   <section class="band">
     <div class="wrap stack" style="gap:28px">
+      <div class="stack" style="gap:14px" id="request">
+        <h2>Send us a request</h2>
+        <p class="muted">Tell us what you need and Troy will get back to you personally.</p>
+        <form class="req" name="request" method="POST" data-netlify="true" netlify-honeypot="company_url" id="reqForm">
+          <input type="hidden" name="form-name" value="request">
+          <p class="hp"><label>Leave this empty <input name="company_url" tabindex="-1" autocomplete="off"></label></p>
+          <label>Name<input name="name" required autocomplete="name"></label>
+          <label><span>Company <span class="opt">(optional)</span></span><input name="company" autocomplete="organization"></label>
+          <label>Email<input type="email" name="email" required autocomplete="email"></label>
+          <label><span>Phone <span class="opt">(optional)</span></span><input type="tel" name="phone" autocomplete="tel"></label>
+          <label class="full">Subject<input name="subject" id="reqSubject" required value="General question"></label>
+          <label class="full">How can we help?<textarea name="message" required placeholder="Your site, the work or training you need, number of people, and any dates."></textarea></label>
+          <div class="full" style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+            <button class="btn hv" type="submit">Send Request</button>
+            <p class="status" id="reqStatus" role="status"></p>
+          </div>
+        </form>
+        <div class="req-done" id="reqDone" hidden><h3>Thanks. Your request is on its way.</h3><p>Troy will get back to you personally. Need an answer sooner? Call <a href="tel:+13189555476">318-955-5476</a>.</p></div>
+      </div>
+      <p class="eyebrow" style="margin-top:12px">Or reach Troy directly</p>
       <div class="contact-cards">
         <div class="cc">
           <p class="eyebrow">Call</p>
@@ -916,10 +951,10 @@ ol.steps span{color:var(--ink-soft);font-size:.98rem}
         </div>
       </div>
       <div class="grid2" style="gap:28px 40px">
-        <div class="stack" style="gap:10px"><h3>Consulting</h3><p class="muted">Audits, written programs, OSHA and workers' comp, and the Profit Preservation Review.</p><a href="mailto:troyking@makesafetymakesense.com?subject=Consulting%20quote%20request">Get a Consulting Quote</a></div>
-        <div class="stack" style="gap:10px"><h3>Project staffing</h3><p class="muted">Full-time safety professionals on your site from mobilization to closeout.</p><a href="mailto:troyking@makesafetymakesense.com?subject=Project%20safety%20staffing">Staff Your Project</a></div>
-        <div class="stack" style="gap:10px"><h3>Training</h3><p class="muted">Open-enrollment OSHA 30, on-site OSHA 10 and 30 classes, and customized courses.</p><a href="mailto:troyking@makesafetymakesense.com?subject=Training%20request">Request a Class</a></div>
-        <div class="stack" style="gap:10px"><h3>MS2 Risk Check app</h3><p class="muted">See the app in action and hear first when yearly subscriptions open.</p><a href="mailto:troyking@makesafetymakesense.com?subject=MS2%20Risk%20Check%20demo%20request">Request a Demo</a></div>
+        <div class="stack" style="gap:10px"><h3>Consulting</h3><p class="muted">Audits, written programs, OSHA and workers' comp, and the Profit Preservation Review.</p><a href="#contact" data-go="contact" data-anchor="request" data-topic="Consulting quote request">Get a Consulting Quote</a></div>
+        <div class="stack" style="gap:10px"><h3>Project staffing</h3><p class="muted">Full-time safety professionals on your site from mobilization to closeout.</p><a href="#contact" data-go="contact" data-anchor="request" data-topic="Project safety staffing">Staff Your Project</a></div>
+        <div class="stack" style="gap:10px"><h3>Training</h3><p class="muted">Open-enrollment OSHA 30, on-site OSHA 10 and 30 classes, and customized courses.</p><a href="#contact" data-go="contact" data-anchor="request" data-topic="Training request">Request a Class</a></div>
+        <div class="stack" style="gap:10px"><h3>MS2 Risk Check app</h3><p class="muted">See the app in action and hear first when yearly subscriptions open.</p><a href="#contact" data-go="contact" data-anchor="request" data-topic="MS2 Risk Check demo request">Request a Demo</a></div>
       </div>
     </div>
   </section>
@@ -975,6 +1010,7 @@ ol.steps span{color:var(--ink-soft);font-size:.98rem}
     var a=e.target.closest("[data-go]"); if(!a) return;
     e.preventDefault();
     var name=a.dataset.go, anchor=a.dataset.anchor;
+    if(a.dataset.topic){ var sj=document.getElementById("reqSubject"); if(sj) sj.value=a.dataset.topic; }
     try{ history.replaceState(null,"","#"+(anchor||name)); }catch(err){}
     show(name,anchor);
   });
@@ -987,8 +1023,19 @@ ol.steps span{color:var(--ink-soft);font-size:.98rem}
       else b.textContent=v;
     });
   });
+  var rf=document.getElementById("reqForm");
+  if(rf) rf.addEventListener("submit",function(e){
+    e.preventDefault();
+    var st=document.getElementById("reqStatus"), b=rf.querySelector("button[type=submit]");
+    st.className="status"; st.textContent="Sending..."; b.disabled=true;
+    fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams(new FormData(rf)).toString()})
+      .then(function(r){ if(!r.ok) throw new Error(r.status);
+        rf.hidden=true; document.getElementById("reqDone").hidden=false; })
+      .catch(function(){ b.disabled=false; st.className="status err";
+        st.innerHTML='Sorry, that didn\'t go through. Please call <a href="tel:+13189555476">318-955-5476</a> or email <a href="mailto:troyking@makesafetymakesense.com">troyking@makesafetymakesense.com</a>.'; });
+  });
   var h=(location.hash||"").replace("#","");
-  var map={review:["consulting","review"],upcoming:["training","upcoming"],plans:["app","plans"]};
+  var map={request:["contact","request"],review:["consulting","review"],upcoming:["training","upcoming"],plans:["app","plans"]};
   if(map[h]) show(map[h][0],map[h][1]); else show(h||"home");
 })();
 </script>
