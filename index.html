@@ -861,7 +861,7 @@ ol.steps span{color:var(--ink-soft);font-size:.98rem}
       <li><a href="tel:+13189555476">318-955-5476</a></li>
       <li><a href="mailto:troyking@makesafetymakesense.com">troyking@makesafetymakesense.com</a></li>
       <li>makesafetymakesense.com</li></ul></div>
-    <div class="legal"><span>Copyright © 2026 Make Safety Make Sense, LLC - All Rights Reserved.</span><span>Mars Snacking name and logo used by permission.</span></div>
+    <div class="legal"><span>Copyright © 2026 Make Safety Make Sense, LLC - All Rights Reserved.</span><span>Mars Snacking name and logo used by permission.</span><span>This site uses Microsoft Clarity to see how visitors use it.</span></div>
   </div>
 </footer>
 
@@ -882,6 +882,7 @@ ol.steps span{color:var(--ink-soft);font-size:.98rem}
     else window.scrollTo(0,0);
     var t={home:"Make Safety Make Sense",consulting:"Consulting",training:"Training",about:"About Troy King",faq:"FAQ",contact:"Contact"}[name];
     document.title = name==="home" ? t : t+" · Make Safety Make Sense";
+    try{ if(window.clarity){ clarity("set","page",name); clarity("event","view_"+name); } }catch(err){}
   }
   document.addEventListener("click",function(e){
     var a=e.target.closest("[data-go]"); if(!a) return;
@@ -907,7 +908,8 @@ ol.steps span{color:var(--ink-soft);font-size:.98rem}
     st.className="status"; st.textContent="Sending..."; b.disabled=true;
     fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams(new FormData(rf)).toString()})
       .then(function(r){ if(!r.ok) throw new Error(r.status);
-        rf.hidden=true; document.getElementById("reqDone").hidden=false; })
+        rf.hidden=true; document.getElementById("reqDone").hidden=false;
+        try{ if(window.clarity) clarity("event","request_form_sent"); }catch(err){} })
       .catch(function(){ b.disabled=false; st.className="status err";
         st.innerHTML='Sorry, that didn\'t go through. Please call <a href="tel:+13189555476">318-955-5476</a> or email <a href="mailto:troyking@makesafetymakesense.com">troyking@makesafetymakesense.com</a>.'; });
   });
