@@ -79,7 +79,7 @@ header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;backgrou
 header.site::after{content:"";display:block;height:5px;background:repeating-linear-gradient(-45deg,var(--hivis) 0 14px,#16233D 14px 28px)}
 .hdr{display:flex;align-items:center;gap:16px;padding-block:10px}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);margin-right:auto}
-.brand svg{width:58px;height:58px;flex:none}
+.brand svg,.brand img{width:58px;height:58px;flex:none}
 .brand b{font:800 1.45rem/1 var(--display);text-transform:uppercase;letter-spacing:.02em;display:block}
 .brand small{font:600 .72rem/1.2 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
 nav.main{display:flex;gap:4px;flex-wrap:wrap}
@@ -95,6 +95,12 @@ nav.main a[aria-current="page"]{border-bottom-color:var(--hivis);color:var(--blu
 }
 
 /* buttons */
+.featured{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px}
+.featured article{background:#fff;border:1px solid var(--line);border-top:6px solid var(--hivis);padding:24px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.featured table{border-collapse:collapse;width:100%;max-width:360px}
+.featured td{padding:6px 10px;border-bottom:1px solid var(--line)}
+.featured td:last-child{text-align:right;font-weight:600}
+.featured tr.total td{font-weight:800;border-bottom:none}
 .btns{display:flex;flex-wrap:wrap;gap:12px}
 .btn{display:inline-flex;align-items:center;gap:8px;font:700 1.1rem/1 var(--display);text-transform:uppercase;letter-spacing:.06em;text-decoration:none;padding:15px 22px;border:2px solid var(--blue);background:var(--blue);color:#fff;cursor:pointer}
 .btn:hover{background:var(--blue-deep);border-color:var(--blue-deep)}
@@ -327,7 +333,7 @@ ol.steps span{color:var(--ink-soft);font-size:.98rem}
 <header class="site">
   <div class="wrap hdr" style="position:relative">
     <a class="brand" href="#home" data-go="home" aria-label="Make Safety Make Sense home">
-      <svg role="img" aria-label="Make Safety Make Sense logo"><use href="#ms2"/></svg>
+      <img src="img/msms-logo.png" alt="Make Safety Make Sense logo">
       <span><b>Make Safety Make Sense</b><small>Construction Safety · OSHA Training</small></span>
     </a>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mainNav">Menu</button>
@@ -420,8 +426,52 @@ ol.steps span{color:var(--ink-soft);font-size:.98rem}
       </figure>
       <div class="stack" style="gap:18px">
         <h2>We know where your money is leaking.</h2>
-        <p class="prose" style="font-size:1.15rem">We've identified 20 common Profit Parasites: policies and procedures that cost companies money and add nothing to safety. Most companies have several.</p>
+        <p class="prose" style="font-size:1.15rem">We've identified 23 common Profit Parasites: policies and procedures that cost companies money and add nothing to safety. Most companies have several.</p>
         <div class="btns"><a class="btn" href="#review" data-go="consulting" data-anchor="review">Find Your Profit Parasites</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="featured-parasites">
+    <div class="wrap stack" style="gap:28px">
+      <div class="stack" style="gap:10px">
+        <p class="eyebrow">Featured Profit Parasites</p>
+        <h2>Two we find on almost every site.</h2>
+        <p class="prose">A Profit Parasite is a policy or procedure that costs you money and adds nothing to safety. There is only safe or not safe. We've identified 23 that show up on almost every site. Here are two.</p>
+      </div>
+      <div class="featured">
+        <article>
+          <p class="eyebrow">Featured Profit Parasite</p>
+          <h3>Doing the Contractor's Training for Them</h3>
+          <p class="prose"><strong>You're paying to train people your contractors are already required to train.</strong></p>
+          <p class="prose">It starts with an assumption: the contractor hasn't trained their crew until they prove otherwise. So the owner covers it. The client rep, the project team or a third-party safety professional spends 2 to 4 hours walking each contractor's crew through subjects OSHA already requires the contractor to cover.</p>
+          <p class="prose">That time adds up fast. At 3 hours per contractor, a project with 10 contractors burns 30 hours. At $100 an hour for your own HSE manager or a third-party safety professional, that's $3,000 per project, time your safety people aren't spending on real hazards.</p>
+          <p class="prose">And you still don't know if the contractor's training was ever done.</p>
+          <p class="prose">We address this through our audits and inspections, or a full-time safety professional on your project who knows what the standard requires and verifies the training, freeing your HSE team for their own work.</p>
+          <div class="btns"><a class="btn" href="#contact" data-go="contact">Ask Us How</a></div>
+        </article>
+        <article>
+          <p class="eyebrow">Featured Profit Parasite</p>
+          <h3>Tying Off on Portable Ladders</h3>
+          <p class="prose"><strong>Many clients require workers to tie off on portable ladders. OSHA doesn't, and the rule costs real money.</strong></p>
+          <p class="prose">Before anyone climbs, the crew has to find or rig an anchor point, get up to it and connect. That setup time is paid time, and much of it is spent exposed to the very fall the rule is meant to prevent.</p>
+          <p class="prose">One of our case-study clients, a large plant with a $30 million a year maintenance budget, had this rule on its site:</p>
+          <table>
+            <tr><td>Times per year</td><td>50</td></tr>
+            <tr><td>Crew size</td><td>5</td></tr>
+            <tr><td>Hours lost each time</td><td>1</td></tr>
+            <tr><td>Labor rate</td><td>$50/hr</td></tr>
+            <tr class="total"><td>Cost per year</td><td>$12,500</td></tr>
+          </table>
+          <p class="prose">Cut the frequency in half and it still costs $6,250 a year. Requiring a ladder holder on top of the tie-off added another $2,500.</p>
+          <p class="prose">We show you where this rule is costing you and what to do instead.</p>
+          <div class="btns"><a class="btn" href="#contact" data-go="contact">Ask Us How</a></div>
+        </article>
+      </div>
+      <div class="stack" style="gap:12px">
+        <h3>20 more are waiting on your site.</h3>
+        <p class="prose">These are two of the Profit Parasites we find most often. We've identified 20 more that are common to almost every site, and most companies have several. Find out which ones are eating into your projects.</p>
+        <div class="btns"><a class="btn hv" href="#contact" data-go="contact">Contact Us</a></div>
       </div>
     </div>
   </section>
@@ -511,7 +561,7 @@ ol.steps span{color:var(--ink-soft);font-size:.98rem}
           <p class="caption">Artwork © 2026 Make Safety Make Sense, LLC</p>
         </div>
         <div class="stack" style="gap:20px">
-          <p class="prose">A Profit Parasite is any policy or procedure that costs you money and adds nothing to safety. We go through your operation to find them, drawing on the 20 we see most often, and show you exactly what they're costing you and how to turn them into Profit Preservers: practices that protect your people and your bottom line at the same time. For qualifying companies, 10% cost reductions are common.</p>
+          <p class="prose">A Profit Parasite is any policy or procedure that costs you money and adds nothing to safety. We go through your operation to find them, drawing on the 23 we see most often, and show you exactly what they're costing you and how to turn them into Profit Preservers: practices that protect your people and your bottom line at the same time. For qualifying companies, 10% cost reductions are common.</p>
           <div class="guarantee"><p><strong>Our guarantee for qualifying companies:</strong> For companies of sufficient size and scope, the savings we identify will cover our consulting fees within one year. We'll tell you up front whether your company qualifies before any work begins.</p></div>
           <div class="btns">
             <a class="btn hv" href="#contact" data-go="contact" data-anchor="request" data-topic="Profit Preservation Review - do we qualify?">See If You Qualify</a>
@@ -773,7 +823,7 @@ ol.steps span{color:var(--ink-soft);font-size:.98rem}
     <div class="wrap">
       <div class="faq">
         <details open><summary>What is Make Safety Make Sense about?</summary><div class="ans"><p class="prose">Make Safety Make Sense provides construction safety consulting, training, and full-time project safety professionals for manufacturers and the contractors who work on their sites. We show you how to keep your people safe while identifying high-risk activities and cost-effective ways to manage them.</p></div></details>
-        <details><summary>What are Profit Parasites?</summary><div class="ans"><img src="img/parasite.png" alt="The Profit Parasite artwork"><p class="prose">Profit Parasites are policies and procedures that cost you money and add nothing to safety or to your work. In some cases, they're simply wasting money. We've identified 20 that we see most often. One of the most common is going beyond the standard to "make it safer." There is only safe or not safe. Anything past safe is wasted time and money.</p></div></details>
+        <details><summary>What are Profit Parasites?</summary><div class="ans"><img src="img/parasite.png" alt="The Profit Parasite artwork"><p class="prose">Profit Parasites are policies and procedures that cost you money and add nothing to safety or to your work. In some cases, they're simply wasting money. We've identified 23 that we see most often. One of the most common is going beyond the standard to "make it safer." There is only safe or not safe. Anything past safe is wasted time and money.</p></div></details>
         <details><summary>What are Profit Preservers?</summary><div class="ans"><img src="img/preservers.png" alt="The Profit Preservers artwork" style="width:140px"><p class="prose">We use the term two ways. First, a process that can be revised to save you money is a Profit Preserver. Second, we use it to recognize the people in the profit preservation fields: safety, legal, human resources, and others.</p></div></details>
         <details><summary>Do you work outside your home area?</summary><div class="ans"><p class="prose">Yes. We serve clients nationwide, both for consulting and for on-site training.</p></div></details>
         <details><summary>Can individuals sign up for OSHA 30?</summary><div class="ans"><p class="prose">Yes. Our OSHA 30 Hour classes are regularly scheduled and open to individual enrollment. OSHA 10 is taught at your site for your crew. See <a href="#upcoming" data-go="training" data-anchor="upcoming">Upcoming Classes</a> on the Training page, or contact us to reserve a seat.</p></div></details>
@@ -852,7 +902,7 @@ ol.steps span{color:var(--ink-soft);font-size:.98rem}
 <footer class="site">
   <div class="wrap">
     <div class="stack" style="gap:12px">
-      <div style="display:flex;gap:12px;align-items:center"><svg width="52" height="52" role="img" aria-label="Make Safety Make Sense logo"><use href="#ms2"/></svg><b style="font:800 1.3rem/1 var(--display);text-transform:uppercase;color:#fff">Make Safety Make Sense, LLC</b></div>
+      <div style="display:flex;gap:12px;align-items:center"><img src="img/msms-logo.png" alt="Make Safety Make Sense logo" width="52" height="52"><b style="font:800 1.3rem/1 var(--display);text-transform:uppercase;color:#fff">Make Safety Make Sense, LLC</b></div>
       <p>Profit Preservation Through Better Risk Management®</p>
     </div>
     <div><h4>Pages</h4><ul>
